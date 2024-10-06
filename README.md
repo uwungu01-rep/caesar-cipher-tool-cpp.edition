@@ -2,4 +2,4 @@
 
 Yet another version of caesar-cipher-tool in yet another language, this time C++.
 
-A C++ starter project.
+A C++ starter project by me.

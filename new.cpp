@@ -155,7 +155,7 @@ int main() {
             }        
         }
         else if(cmd == "/") {
-            abort();
+            return;
         }
         else {
             cout << "Invalid command. \n";

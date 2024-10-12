@@ -88,9 +88,6 @@ int main() {
                     break;
                 }
 
-                str cip = "";
-                str cipcap = "";
-                
                 cout << "Type your string: ";
                 std::getline(cin >> std::ws, chr);
                 while(true) {
@@ -107,9 +104,7 @@ int main() {
                             cout << "Input has to be greater than 1 and less than 25. \n";
                         }
                         else {
-                            cip = sort(temp, alp);
-                            cipcap = sortcap(temp, alpcap);
-                            cout << "Output: " << Encipher(alp, cip, alpcap, cipcap, chr) << '\n';
+                            cout << "Output: " << Encipher(alp, sort(temp, alp), alpcap, sortcap(temp, alpcap), chr) << '\n';
                         }
                     }
                     else {
@@ -124,9 +119,6 @@ int main() {
                     break;
                 }
 
-                str cip = "";
-                str cipcap = "";
-                
                 cout << "Type your string: ";
                 std::getline(cin >> std::ws, chr);
 
@@ -143,9 +135,7 @@ int main() {
                             cout << "Input has to be greater than 1 and less than 25. \n";
                         }
                         else {
-                            cip = sort(temp, alp);
-                            cipcap = sortcap(temp, alpcap);
-                            cout << "Output: " << Decipher(alp, cip, alpcap, cipcap, chr) << '\n';
+                            cout << "Output: " << Decipher(alp, sort(temp, alp), alpcap, sortcap(temp, alpcap), chr) << '\n';
                         }
                     }
                     else {
@@ -155,7 +145,7 @@ int main() {
             }        
         }
         else if(cmd == "/") {
-            return;
+            break;
         }
         else {
             cout << "Invalid command. \n";

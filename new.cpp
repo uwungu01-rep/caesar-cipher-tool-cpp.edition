@@ -12,8 +12,12 @@ const str alpcap = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 str chr;
 str shf;
 
-bool isDigit(str& input) {
-    return all_of(input.begin(), input.end(), ::isdigit);
+bool isDigit(str input) {
+    str temp = input;
+    if(temp.find("-") == 0) {
+        temp.str::erase(0);
+    }
+    return all_of(temp.begin(), temp.end(), ::isdigit);
 }
 
 str sort(int shf, str alp) {
@@ -74,6 +78,20 @@ str Decipher(str alp, str cip, str alpcap, str cipcap, str chr) {
     return output;
 }
 
+int algorithm(int shf) {
+    int temp = shf;
+    if(temp >= 0) {
+        temp = temp % 26;
+        return temp;
+    }
+    else {
+        while(temp < 0) {
+            temp = (26 + temp) % 26;
+        }
+        return temp;
+    }
+}
+
 int main() {
     str cmd = "";
     while(true) {
@@ -83,10 +101,10 @@ int main() {
         if(cmd == "e" || cmd == "E") {
             while(true) {
                 if(bck) { //Start
-                    cout << "Type your string: ";
+                    cout << "Your input: ";
                     std::getline(cin >> std::ws, chr);
                     while(true) {
-                        cout << "Shift (from 1 to 25) (type / to cancel): ";
+                        cout << "Shift (type / to cancel): ";
                         std::getline(cin >> std::ws, shf);
                         if(shf == "/") {
                             bck = false;
@@ -94,12 +112,7 @@ int main() {
                         }
                         else if(isDigit(shf)) {
                             int temp = stoi(shf);
-                            if(temp < 1 || temp > 25) {
-                                cout << "Input has to be greater than 1 and less than 25. \n";
-                            }
-                            else {
-                                cout << "Output: " << Encipher(alp, sort(temp, alp), alpcap, sortcap(temp, alpcap), chr) << '\n';
-                            }
+                            cout << "Output: " << Encipher(alp, sort(algorithm(temp), alp), alpcap, sortcap(algorithm(temp), alpcap), chr) << '\n';
                         }
                         else {
                             cout << "Invalid input. \n";
@@ -113,10 +126,10 @@ int main() {
         else if(cmd == "d" || cmd == "D") {
             while(true) {
                 if(bck) { //Start
-                    cout << "Type your string: ";
+                    cout << "Your input: ";
                     std::getline(cin >> std::ws, chr);
                     while(true) {   
-                        cout << "Shift (from 1 to 25) (type / to cancel): ";
+                        cout << "Shift (type / to cancel): ";
                         std::getline(cin >> std::ws, shf);
                         if(shf == "/") {
                             bck = false;
@@ -124,12 +137,7 @@ int main() {
                         }
                         else if(isDigit(shf)) {
                             int temp = stoi(shf);
-                            if(temp < 1 || temp > 25) {
-                                cout << "Input has to be greater than 1 and less than 25. \n";
-                            }
-                            else {
-                                cout << "Output: " << Decipher(alp, sort(temp, alp), alpcap, sortcap(temp, alpcap), chr) << '\n';
-                            }
+                            cout << "Output: " << Decipher(alp, sort(algorithm(temp), alp), alpcap, sortcap(algorithm(temp), alpcap), chr) << '\n';
                         }
                         else {
                             cout << "Invalid input. \n";

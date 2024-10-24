@@ -112,7 +112,7 @@ int main() {
                         }
                         else if(isDigit(shf)) {
                             int temp = stoi(shf);
-                            cout << "Output: " << Encipher(alp, sort(algorithm(temp), alp), alpcap, sortcap(algorithm(temp), alpcap), chr) << '\n';
+                            cout << "Output: " << Encipher(alp, sort(algorithm(temp)), alp), alpcap, sortcap(algorithm(temp), alpcap), chr) << '\n';
                         }
                         else {
                             cout << "Invalid input. \n";
@@ -137,7 +137,7 @@ int main() {
                         }
                         else if(isDigit(shf)) {
                             int temp = stoi(shf);
-                            cout << "Output: " << Decipher(alp, sort(algorithm(temp), alp), alpcap, sortcap(algorithm(temp), alpcap), chr) << '\n';
+                            cout << "Output: " << Decipher(alp, sort(algorithm(temp)), alp), alpcap, sortcap(algorithm(temp), alpcap), chr) << '\n';
                         }
                         else {
                             cout << "Invalid input. \n";

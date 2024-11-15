@@ -2,14 +2,15 @@
 #include <string>
 #include <algorithm>
 
-using str = std::string; 
-using std::cin; 
-using std::cout; 
+using str = std::string;
+using std::cin;
+using std::cout;
 using std::getline;
 
-const str alphabet = "abcdefghijklmnopqrstuvwxyz", upper_alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-
 bool IsInt(str input) {
+    if(input.find(".") != str::npos) {
+        return false;
+    }
     try {
         stoi(input);
         return true;
@@ -19,47 +20,47 @@ bool IsInt(str input) {
     }
 }
 
-str Trim(std::string& input) {
+str Trim(str input) {
     input.erase(0, input.find_first_not_of(" \t\n\r\f\v"));
     input.erase(input.find_last_not_of(" \t\n\r\f\v") + 1);
     return input;
 }
 
 str Sort(int shift, str alphabet) {
-    str ciphered = "";
+    str shifted = "";
     int len = alphabet.length();
     for(int i = shift; i < len + shift; i++) {
         if(i < len) {
-            ciphered += alphabet[i];
+            shifted += alphabet[i];
             continue;
         }
-        ciphered += alphabet[abs(i - len)];
+        shifted += alphabet[abs(i - len)];
     }
-    return ciphered;
+    return shifted;
 }
 
 str Sortcap(int shift, str upper_alphabet) {
-    str ciphered_upper = "";
+    str shifted_upper = "";
     int len = upper_alphabet.length();
     for(int i = shift; i < len + shift; i++) {
         if(i < len) {
-            ciphered_upper += upper_alphabet[i];
+            shifted_upper += upper_alphabet[i];
             continue;
         }
-        ciphered_upper += upper_alphabet[abs(i - len)];
+        shifted_upper += upper_alphabet[abs(i - len)];
     }
-    return ciphered_upper;
+    return shifted_upper;
 }
 
-str Encipher(str alphabet, str ciphered, str upper_alphabet, str ciphered_upper, str user_input) {
+str Encipher(str alphabet, str shifted, str upper_alphabet, str shifted_upper, str user_input) {
     str output = "";
     for(int k = 0; k < user_input.length(); k++) {
         if(alphabet.find(user_input[k]) != str::npos) {
-            output += ciphered[alphabet.find(user_input[k])];
+            output += shifted[alphabet.find(user_input[k])];
             continue;
         }
         else if(upper_alphabet.find(user_input[k]) != str::npos) {
-            output += ciphered_upper[upper_alphabet.find(user_input[k])];
+            output += shifted_upper[upper_alphabet.find(user_input[k])];
             continue;
         }
         output += user_input[k];
@@ -67,15 +68,15 @@ str Encipher(str alphabet, str ciphered, str upper_alphabet, str ciphered_upper,
     return output;
 }
 
-str Decipher(str alphabet, str ciphered, str upper_alphabet, str ciphered_upper, str user_input) {
+str Decipher(str alphabet, str shifted, str upper_alphabet, str shifted_upper, str user_input) {
     str output = "";
     for(int k = 0; k < user_input.length(); k++) {
-        if(ciphered.find(user_input[k]) != str::npos) {
-            output += alphabet[ciphered.find(user_input[k])];
+        if(shifted.find(user_input[k]) != str::npos) {
+            output += alphabet[shifted.find(user_input[k])];
             continue;
         }
-        else if(ciphered_upper.find(user_input[k]) != str::npos) {
-            output += upper_alphabet[ciphered_upper.find(user_input[k])];
+        else if(shifted_upper.find(user_input[k]) != str::npos) {
+            output += upper_alphabet[shifted_upper.find(user_input[k])];
             continue;
         }
         output += user_input[k];
@@ -96,6 +97,7 @@ int Algorithm(int shift) {
 }
 
 int main() {
+    const str alphabet = "abcdefghijklmnopqrstuvwxyz", upper_alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     str cmd = "", user_input, shift;
     while(true) {
         cout << "Type E for Deciphering, type D for Deciphering (Case insensitive). Type / to exit the program: "; getline(cin, cmd);
@@ -113,7 +115,9 @@ int main() {
                         run = false;
                     }
                     else if(IsInt(shift)) {
-                        cout << "Output: " << Encipher(alphabet, Sort(Algorithm(stoi(shift)), alphabet), upper_alphabet, Sortcap(Algorithm(stoi(shift)), upper_alphabet), user_input) << '\n';
+                        str shifted = Sort(Algorithm(stoi(shift)), alphabet);
+                        str shifted_upper = Sortcap(Algorithm(stoi(shift)), upper_alphabet);
+                        cout << "Output: " << Encipher(alphabet, shifted, upper_alphabet, shifted_upper, user_input) << '\n';
                     }
                     else {
                         cout << "Invalid input. \n";
@@ -125,7 +129,7 @@ int main() {
             while(run) {
                 cout << "Your input: "; getline(cin, user_input);
                 if(Trim(user_input).empty()) {
-                    cout << "Input cannot be empty. \n";\
+                    cout << "Input cannot be empty. \n";
                     continue;
                 }
                 while(run) {
@@ -134,7 +138,9 @@ int main() {
                         run = false;
                     }
                     else if(IsInt(shift)) {
-                        cout << "Output: " << Decipher(alphabet, Sort(Algorithm(stoi(shift)), alphabet), upper_alphabet, Sortcap(Algorithm(stoi(shift)), upper_alphabet), user_input) << '\n';
+                        str shifted = Sort(Algorithm(stoi(shift)), alphabet);
+                        str shifted_upper = Sortcap(Algorithm(stoi(shift)), upper_alphabet);
+                        cout << "Output: " << Decipher(alphabet, shifted, upper_alphabet, shifted_upper, user_input) << '\n';
                     }
                     else {
                         cout << "Invalid input. \n";
@@ -150,4 +156,4 @@ int main() {
         }
     }
     return 0;
-}    
+}

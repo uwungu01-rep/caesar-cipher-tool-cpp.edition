@@ -100,7 +100,7 @@ int main() {
     const str alphabet = "abcdefghijklmnopqrstuvwxyz", upper_alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     str cmd = "", user_input, shift;
     while(true) {
-        cout << "Type E for Deciphering, type D for Deciphering (Case insensitive). Type / to exit the program: "; getline(cin, cmd);
+        cout << "Type E for Enciphering, type D for Deciphering (Case insensitive). Type / to exit the program: "; getline(cin, cmd);
         bool run = true;
         if(cmd == "e" || cmd == "E") {
             while(run) {

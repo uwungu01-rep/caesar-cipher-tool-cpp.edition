@@ -39,19 +39,6 @@ str Sort(int shift, str alphabet) {
     return shifted;
 }
 
-str Sortcap(int shift, str upper_alphabet) {
-    str shifted_upper = "";
-    int len = upper_alphabet.length();
-    for(int i = shift; i < len + shift; i++) {
-        if(i < len) {
-            shifted_upper += upper_alphabet[i];
-            continue;
-        }
-        shifted_upper += upper_alphabet[abs(i - len)];
-    }
-    return shifted_upper;
-}
-
 str Encipher(str alphabet, str shifted, str upper_alphabet, str shifted_upper, str user_input) {
     str output = "";
     for(int k = 0; k < user_input.length(); k++) {
@@ -116,7 +103,7 @@ int main() {
                     }
                     else if(IsInt(shift)) {
                         str shifted = Sort(Algorithm(stoi(shift)), alphabet);
-                        str shifted_upper = Sortcap(Algorithm(stoi(shift)), upper_alphabet);
+                        str shifted_upper = Sort(Algorithm(stoi(shift)), upper_alphabet);
                         cout << "Output: " << Encipher(alphabet, shifted, upper_alphabet, shifted_upper, user_input) << '\n';
                     }
                     else {
@@ -139,7 +126,7 @@ int main() {
                     }
                     else if(IsInt(shift)) {
                         str shifted = Sort(Algorithm(stoi(shift)), alphabet);
-                        str shifted_upper = Sortcap(Algorithm(stoi(shift)), upper_alphabet);
+                        str shifted_upper = Sort(Algorithm(stoi(shift)), upper_alphabet);
                         cout << "Output: " << Decipher(alphabet, shifted, upper_alphabet, shifted_upper, user_input) << '\n';
                     }
                     else {

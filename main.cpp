@@ -20,7 +20,7 @@ bool IsInt(str& input) {
         return false;
     }
 
-    if(input[0] == "+" || input[0] == "-") {
+    if(input[0] == '+' || input[0] == '-') {
         if(input.length() == 1) {
             return false;
         }
@@ -66,16 +66,16 @@ str Encipher(str alphabet, str shifted, str upper_alphabet, str shifted_upper, s
 
 str Decipher(str alphabet, str shifted, str upper_alphabet, str shifted_upper, str user_input) {
     str output = "";
-    for(int k = 0; k < user_input.length(); k++) {
-        if(shifted.find(user_input[k]) != str::npos) {
-            output += alphabet[shifted.find(user_input[k])];
+    for(char k : user_input) {
+        if(shifted.find(k) != str::npos) {
+            output += alphabet[shifted.find(k)];
             continue;
         }
-        else if(shifted_upper.find(user_input[k]) != str::npos) {
-            output += upper_alphabet[shifted_upper.find(user_input[k])];
+        else if(shifted_upper.find(k) != str::npos) {
+            output += upper_alphabet[shifted_upper.find(k)];
             continue;
         }
-        output += user_input[k];
+        output += k;
     }
     return output;
 }

@@ -111,9 +111,18 @@ int main() {
                         run = false;
                     }
                     else if(IsInt(shift)) {
-                        str shifted = Sort(Algorithm(stoi(shift)), alphabet);
-                        str shifted_upper = Sort(Algorithm(stoi(shift)), upper_alphabet);
-                        cout << "Output: " << Encipher(alphabet, shifted, upper_alphabet, shifted_upper, user_input) << '\n';
+                        try {
+                            str shifted = Sort(Algorithm(stoi(shift)), alphabet);
+                            str shifted_upper = Sort(Algorithm(stoi(shift)), upper_alphabet);
+                            cout << "Output: " << Encipher(alphabet, shifted, upper_alphabet, shifted_upper, user_input) << '\n';
+                        }
+                        catch(std::out_of_range) {
+                            if(shift[0] == '-')
+                                cout << "Shift is too small (min -2,147,483,648, max 2,147,483,647)! \n";
+                            else {
+                                cout << "Shift is too big (min -2,147,483,648, max 2,147,483,647)! \n";
+                            }
+                        }
                     }
                     else {
                         cout << "Invalid input. \n";
@@ -134,9 +143,18 @@ int main() {
                         run = false;
                     }
                     else if(IsInt(shift)) {
-                        str shifted = Sort(Algorithm(stoi(shift)), alphabet);
-                        str shifted_upper = Sort(Algorithm(stoi(shift)), upper_alphabet);
-                        cout << "Output: " << Decipher(alphabet, shifted, upper_alphabet, shifted_upper, user_input) << '\n';
+                        try {
+                            str shifted = Sort(Algorithm(stoi(shift)), alphabet);
+                            str shifted_upper = Sort(Algorithm(stoi(shift)), upper_alphabet);
+                            cout << "Output: " << Decipher(alphabet, shifted, upper_alphabet, shifted_upper, user_input) << '\n';
+                        }
+                        catch(std::out_of_range) {
+                            if(shift[0] == '-')
+                                cout << "Shift is too small (min -2,147,483,648, max 2,147,483,647)! \n";
+                            else {
+                                cout << "Shift is too big (min -2,147,483,648, max 2,147,483,647)! \n";
+                            }
+                        }
                     }
                     else {
                         cout << "Invalid input. \n";

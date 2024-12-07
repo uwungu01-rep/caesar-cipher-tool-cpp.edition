@@ -7,6 +7,12 @@ using std::cin;
 using std::cout;
 using std::getline;
 
+str Trim(str input) {
+    input.erase(0, input.find_first_not_of(" \t\n\r\f\v"));
+    input.erase(input.find_last_not_of(" \t\n\r\f\v") + 1);
+    return input;
+}
+
 bool IsInt(str& input) {
     int start = 0;
 
@@ -27,12 +33,6 @@ bool IsInt(str& input) {
         }
     }
     return true;
-}
-
-str Trim(str input) {
-    input.erase(0, input.find_first_not_of(" \t\n\r\f\v"));
-    input.erase(input.find_last_not_of(" \t\n\r\f\v") + 1);
-    return input;
 }
 
 str Sort(int shift, str alphabet) {

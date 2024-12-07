@@ -7,17 +7,26 @@ using std::cin;
 using std::cout;
 using std::getline;
 
-bool IsInt(str input) {
-    if(input.find(".") != str::npos) {
+bool IsInt(str& input) {
+    int start = 0;
+
+    if(Trim(input).empty()) {
         return false;
     }
-    try {
-        stoi(input);
-        return true;
+
+    if(input[0] == "+" || input[0] == "-") {
+        if(input.length() == 1) {
+            return false;
+        }
+        start = 1;
     }
-    catch(...) {
-        return false;
+
+    for(int i = start; i < input.length(); i++) {
+        if(!std::isdigit(input[i])) {
+            return false;
+        }
     }
+    return true;
 }
 
 str Trim(str input) {
@@ -87,7 +96,7 @@ int main() {
     const str alphabet = "abcdefghijklmnopqrstuvwxyz", upper_alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     str cmd = "", user_input, shift;
     while(true) {
-        cout << "Type E for Enciphering, type D for Deciphering (Case insensitive). Type / to exit the program: "; getline(cin, cmd);
+        cout << "Type E for Deciphering, type D for Deciphering (Case insensitive). Type / to exit the program: "; getline(cin, cmd);
         bool run = true;
         if(cmd == "e" || cmd == "E") {
             while(run) {

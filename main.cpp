@@ -94,31 +94,26 @@ int main() {
             }
             while(run) {
                 cout << "Shift (type / to cancel): "; getline(cin, shift);
-                if(shift == "/") {
-                    run = false;
-                }
-                else if(IsInt(shift) && (cmd == "e" || cmd == "E")) {
-                    try {
+                try {
+                    if(shift == "/") {
+                        run = false;
+                    }
+                    else if(IsInt(shift) && (cmd == "e" || cmd == "E")) {
                         str shifted = Sort(Algorithm(stoll(shift)), alphabet);
                         str shifted_upper = Sort(Algorithm(stoll(shift)), upper_alphabet);
                         cout << "Output: " << Caesar(alphabet, shifted, upper_alphabet, shifted_upper, user_input) << '\n';
                     }
-                    catch(std::out_of_range) {
-                        cout << "Why? \n";
-                    }
-                }
-                else if(IsInt(shift) && (cmd == "d" || cmd == "D")) {
-                    try {
+                    else if(IsInt(shift) && (cmd == "d" || cmd == "D")) {
                         str shifted = Sort(Algorithm(-stoll(shift)), alphabet);
                         str shifted_upper = Sort(Algorithm(-stoll(shift)), upper_alphabet);
                         cout << "Output: " << Caesar(alphabet, shifted, upper_alphabet, shifted_upper, user_input) << '\n';
                     }
-                    catch(std::out_of_range) {
-                        cout << "Why? \n";
+                    else {
+                        cout << "Invalid input. \n";
                     }
                 }
-                else {
-                    cout << "Invalid input. \n";
+                catch(std::out_of_range) {
+                    cout << "Why? \n";
                 }
             }
         }

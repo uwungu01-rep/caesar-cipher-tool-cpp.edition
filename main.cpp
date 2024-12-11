@@ -49,34 +49,18 @@ str Sort(int shift, str alphabet) {
     return shifted;
 }
 
-str Encipher(str alphabet, str shifted, str upper_alphabet, str shifted_upper, str user_input) {
+str Caesar(str alphabet, str shifted, str upper_alphabet, str shifted_upper, str user_input) {
     str output = "";
     for(char k : user_input) {
         if(alphabet.find(k) != str::npos) {
             output += shifted[alphabet.find(k)];
-            continue;
         }
         else if(upper_alphabet.find(k) != str::npos) {
             output += shifted_upper[upper_alphabet.find(k)];
-            continue;
         }
-        output += k;
-    }
-    return output;
-}
-
-str Decipher(str alphabet, str shifted, str upper_alphabet, str shifted_upper, str user_input) {
-    str output = "";
-    for(char k : user_input) {
-        if(shifted.find(k) != str::npos) {
-            output += alphabet[shifted.find(k)];
-            continue;
+        else {
+            output += k;
         }
-        else if(shifted_upper.find(k) != str::npos) {
-            output += upper_alphabet[shifted_upper.find(k)];
-            continue;
-        }
-        output += k;
     }
     return output;
 }
@@ -90,71 +74,53 @@ long long Algorithm(long long shift) {
 
 int main() {
     const str alphabet = "abcdefghijklmnopqrstuvwxyz", upper_alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    const str COMMAND = "eEdD";
     str cmd, user_input, shift;
     while(true) {
-        cout << "Type E for Deciphering, type D for Deciphering (Case insensitive). Type / to exit the program: "; getline(cin, cmd);
         bool run = true;
-        if(cmd == "e" || cmd == "E") {
-            while(run) {
-                cout << "Your input: "; getline(cin , user_input);
-                if(Trim(user_input).empty()) {
-                    cout << "Input cannot be empty. \n"; 
-                    continue;
-                }   
-                while(run) {
-                    cout << "Shift (type / to cancel): "; getline(cin, shift);
-                    if(shift == "/") {
-                        run = false;
-                    }
-                    else if(IsInt(shift)) {
-                        try {
-                            str shifted = Sort(Algorithm(stoll(shift)), alphabet);
-                            str shifted_upper = Sort(Algorithm(stoll(shift)), upper_alphabet);
-                            cout << "Output: " << Encipher(alphabet, shifted, upper_alphabet, shifted_upper, user_input) << '\n';
-                        }
-                        catch(std::out_of_range) {
-                            cout << "Why? \n";
-                        }
-                    }
-                    else {
-                        cout << "Invalid input. \n";
-                    }
-                }
-            }
-        }
-        else if(cmd == "d" || cmd == "D") {
-            while(run) {
-                cout << "Your input: "; getline(cin, user_input);
-                if(Trim(user_input).empty()) {
-                    cout << "Input cannot be empty. \n";
-                    continue;
-                }
-                while(run) {
-                    cout << "Shift (type / to cancel): "; getline(cin, shift);
-                    if(shift == "/") {
-                        run = false;
-                    }
-                    else if(IsInt(shift)) {
-                        try {
-                            str shifted = Sort(Algorithm(stoll(shift)), alphabet);
-                            str shifted_upper = Sort(Algorithm(stoll(shift)), upper_alphabet);
-                            cout << "Output: " << Decipher(alphabet, shifted, upper_alphabet, shifted_upper, user_input) << '\n';
-                        }
-                        catch(std::out_of_range) {
-                            cout << "Why? \n";
-                        }
-                    }
-                    else {
-                        cout << "Invalid input. \n";
-                    }
-                }
-            }
-        }
-        else if(cmd == "/") {
+        cout << "Type E for Deciphering, type D for Deciphering (Case insensitive). Type / to exit the program: "; getline(cin, cmd);
+        if(cmd == "/") {
             break;
         }
-        else {
+        else if(COMMAND.find(cmd) == str::npos) {
             cout << "Invalid command. \n";
+            continue;
+        }
+        while(run) {
+            cout << "Your input: "; getline(cin , user_input);
+            if(Trim(user_input).empty()) {
+                cout << "Input cannot be empty. \n"; 
+                continue;
+            }
+            while(run) {
+                cout << "Shift (type / to cancel): "; getline(cin, shift);
+                if(shift == "/") {
+                    run = false;
+                }
+                else if(IsInt(shift) && (cmd == "e" || cmd == "E")) {
+                    try {
+                        str shifted = Sort(Algorithm(stoll(shift)), alphabet);
+                        str shifted_upper = Sort(Algorithm(stoll(shift)), upper_alphabet);
+                        cout << "Output: " << Caesar(alphabet, shifted, upper_alphabet, shifted_upper, user_input) << '\n';
+                    }
+                    catch(std::out_of_range) {
+                        cout << "Why? \n";
+                    }
+                }
+                else if(IsInt(shift) && (cmd == "d" || cmd == "D")) {
+                    try {
+                        str shifted = Sort(Algorithm(-stoll(shift)), alphabet);
+                        str shifted_upper = Sort(Algorithm(-stoll(shift)), upper_alphabet);
+                        cout << "Output: " << Caesar(alphabet, shifted, upper_alphabet, shifted_upper, user_input) << '\n';
+                    }
+                    catch(std::out_of_range) {
+                        cout << "Why? \n";
+                    }
+                }
+                else {
+                    cout << "Invalid input. \n";
+                }
+            }
         }
     }
     return 0;

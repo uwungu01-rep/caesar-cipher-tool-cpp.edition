@@ -92,29 +92,30 @@ int main() {
                 cout << "Input cannot be empty. \n"; 
                 continue;
             }
-            while(run) {
-                cout << "Shift (type / to cancel): "; getline(cin, shift);
-                try {
-                    if(shift == "/") {
-                        run = false;
-                    }
-                    else if(IsInt(shift) && (cmd == "e" || cmd == "E")) {
-                        str shifted = Sort(Algorithm(stoll(shift)), alphabet);
-                        str shifted_upper = Sort(Algorithm(stoll(shift)), upper_alphabet);
-                        cout << "Output: " << Caesar(alphabet, shifted, upper_alphabet, shifted_upper, user_input) << '\n';
-                    }
-                    else if(IsInt(shift) && (cmd == "d" || cmd == "D")) {
-                        str shifted = Sort(Algorithm(-stoll(shift)), alphabet);
-                        str shifted_upper = Sort(Algorithm(-stoll(shift)), upper_alphabet);
-                        cout << "Output: " << Caesar(alphabet, shifted, upper_alphabet, shifted_upper, user_input) << '\n';
-                    }
-                    else {
-                        cout << "Invalid input. \n";
-                    }
+            break;
+        }
+        while(run) {
+            cout << "Shift (type / to cancel): "; getline(cin, shift);
+            try {
+                if(shift == "/") {
+                    run = false;
                 }
-                catch(std::out_of_range) {
-                    cout << "Why? \n";
+                else if(IsInt(shift) && (cmd == "e" || cmd == "E")) {
+                    str shifted = Sort(Algorithm(stoll(shift)), alphabet);
+                    str shifted_upper = Sort(Algorithm(stoll(shift)), upper_alphabet);
+                    cout << "Output: " << Caesar(alphabet, shifted, upper_alphabet, shifted_upper, user_input) << '\n';
                 }
+                else if(IsInt(shift) && (cmd == "d" || cmd == "D")) {
+                    str shifted = Sort(Algorithm(-stoll(shift)), alphabet);
+                    str shifted_upper = Sort(Algorithm(-stoll(shift)), upper_alphabet);
+                    cout << "Output: " << Caesar(alphabet, shifted, upper_alphabet, shifted_upper, user_input) << '\n';
+                }
+                else {
+                    cout << "Invalid input. \n";
+                }
+            }
+            catch(std::out_of_range) {
+                cout << "Why? \n";
             }
         }
     }

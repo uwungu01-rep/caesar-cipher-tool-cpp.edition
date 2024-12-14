@@ -2,11 +2,11 @@
 #include <cstdlib>
 #include "Caesar.h"
 
-long long Caesar::Algorithm(long long shift) {
+int Caesar::Algorithm(long long shift) {
     if(shift >= 0) {
         return shift % 26;
     }
-    return shift = 26 + shift % 26;
+    return 26 + shift % 26;
 }
 
 std::string Caesar::Sort(int shift, std::string alphabet) {

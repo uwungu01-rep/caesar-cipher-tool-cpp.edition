@@ -3,6 +3,8 @@
 #include <algorithm>
 #include "Caesar.h"
 #include "Misc.h"
+#include "Caesar.cpp"
+#include "Misc.cpp"
 
 using str = std::string;
 using std::cin;
@@ -39,13 +41,15 @@ int main() {
                     run = false;
                 }
                 else if(Misc::IsInt(shift) && (cmd == "e" || cmd == "E")) {
-                    str shifted = Caesar::Sort(Caesar::Algorithm(stoll(shift)), alphabet);
-                    str shifted_upper = Caesar::Sort(Caesar::Algorithm(stoll(shift)), upper_alphabet);
+                    int temp = Caesar::Algorithm(stoll(shift));
+                    str shifted = Caesar::Sort(temp, alphabet);
+                    str shifted_upper = Caesar::Sort(temp, upper_alphabet);
                     cout << "Output: " << Caesar::Cipher(alphabet, shifted, upper_alphabet, shifted_upper, user_input) << '\n';
                 }
                 else if(Misc::IsInt(shift) && (cmd == "d" || cmd == "D")) {
-                    str shifted = Caesar::Sort(Caesar::Algorithm(-stoll(shift)), alphabet);
-                    str shifted_upper = Caesar::Sort(Caesar::Algorithm(-stoll(shift)), upper_alphabet);
+                    int temp = Caesar::Algorithm(-stoll(shift));
+                    str shifted = Caesar::Sort(temp, alphabet);
+                    str shifted_upper = Caesar::Sort(temp, upper_alphabet);
                     cout << "Output: " << Caesar::Cipher(alphabet, shifted, upper_alphabet, shifted_upper, user_input) << '\n';
                 }
                 else {

@@ -17,28 +17,28 @@ int main() {
     const str COMMAND = "eEdD";
     str cmd, user_input, shift;
     while(true) {
-        bool run = true;
         cout << "Type E for Deciphering, type D for Deciphering (Case insensitive). Type / to exit the program: "; getline(cin, cmd);
         if(cmd == "/") {
             break;
         }
-        else if(COMMAND.find(cmd) == str::npos) {
+        else if(COMMAND.find(cmd) == str::npos || cmd.length() != 1) {
             cout << "Invalid command. \n";
             continue;
         }
-        while(run) {
+        while(true) {
             cout << "Your input: "; getline(cin , user_input);
             if(Misc::Trim(user_input).empty()) {
                 cout << "Input cannot be empty. \n"; 
-                continue;   
             }
-            break;
+            else {
+                break;
+            }
         }
-        while(run) {
+        while(true) {
             cout << "Shift (type / to cancel): "; getline(cin, shift);
             try {
                 if(shift == "/") {
-                    run = false;
+                    break;
                 }
                 else if(Misc::IsInt(shift) && (cmd == "e" || cmd == "E")) {
                     int temp = Caesar::Algorithm(stoll(shift));

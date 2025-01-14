@@ -25,14 +25,15 @@ Now, assuming you're not using Windows or you're using Windows and you're just h
             </li>
             <li>
                 In terminal, run:
-                ```
-                g++ main.cpp
-                ```
-                Optionally, you can add "-o" at the end + whatever name you want the .exe to be. The command should look like this:
-                ```
-                g++ main.cpp -o {name}
-                ```
-                With name as the name you want the .exe to be.
+                
+```
+g++ main.cpp
+```
+Optionally, you can add "-o" at the end + whatever name you want the .exe to be. The command should look like this:
+```
+g++ main.cpp -o {name}
+```
+With name as the name you want the .exe to be.
             </li>
         </ol>
     </li>

@@ -18,7 +18,7 @@ Now, assuming you're not using Windows or you're using Windows and you're just h
         On Windows:
         <ol type=I">
             <li>
-                Follow the instruction from [here](https://code.visualstudio.com/docs/cpp/config-mingw) to get GCC (God bless your soul).
+                Follow the instruction from <a href="https://code.visualstudio.com/docs/cpp/config-mingw">here</a> to get GCC (God bless your soul).
             </li>
             <li>
                 Open the source folder (the folder contains main.cpp), right click and choose "Open in Terminal".

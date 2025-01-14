@@ -45,4 +45,5 @@ No MacOS because I don't like to.
 
 ## License
 This project is licensed under the GNU General Public License 3.0, check [LICENSE](LICENSE) for more details.
+
 Probably gonna deprecate this and turn to Rust. (It's the canon event)

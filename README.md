@@ -16,7 +16,7 @@ Now, assuming you're not using Windows or you're using Windows and you're just h
 <ol tpye="1">
     <li>
         On Windows:
-        <ol type="a">
+        <ol type=I">
             <li>
                 Follow the instruction from [here](https://code.visualstudio.com/docs/cpp/config-mingw) to get GCC (God bless your soul).
             </li>

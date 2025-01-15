@@ -18,7 +18,7 @@ Now, assuming you're not using Windows or you're using Windows and you're just h
         On Windows:
         <ol type=I">
             <li>
-                Follow the instruction from <a href="https://code.visualstudio.com/docs/cpp/config-mingw">here</a> to get GCC (God bless your soul).
+                Follow the instruction from <a href="https://code.visualstudio.com/docs/cpp/config-mingw">here</a> to get GCC (God bless your soul). (Ignore if you already have GCC)
             </li>
             <li>
                 Open the source folder (the folder contains main.cpp), right click and choose "Open in Terminal".
@@ -38,7 +38,7 @@ With name as the name you want the .exe to be.
         </ol>
     </li>
     <li>
-        On linux: Follow the instruction from [here](https://code.visualstudio.com/docs/cpp/config-linux) to get GCC. Navigate to the source folder (the folder contains main.cpp) and open your terminal there. Everything else should be the same as Windows.
+        On linux: Follow the instruction from [here](https://code.visualstudio.com/docs/cpp/config-linux) to get GCC (Ignore if you already have GCC). Navigate to the source folder (the folder contains main.cpp) and open your terminal there. Everything else should be the same as Windows.
     </li>
 </ol>
 No MacOS because I don't like to.

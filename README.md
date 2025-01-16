@@ -1,4 +1,4 @@
-# Caesar Cipher Tool<sup><sup>TM</sup></sup> - C++ Edition
+# Julius Cipher - C++ Edition
 A simple program use to Encipher/Decipher text to/from Caesar Cipher. And yes, there are more versions of this program from other programming languages.
 
 ## How this thing works
